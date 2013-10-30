@@ -143,25 +143,29 @@ Variables should be named as descriptively as possible. Single letter variable n
 
 Asterisks indicating pointers belong with the variable, e.g., `NSString *text` not `NSString* text` or `NSString * text`, except in the case of constants.
 
-For not public variables use 
+For not public variables use ivars, public properties use only for vars you need make accessable from other classes.
 
 **For example:**
 
 ```objc
+@interface NYTSection : NSObject {
+@private
+    NSString *_headline;
+}
+
+@property (strong, nonatomic) NSString *publicHeadline;
+```
+
+**Not:**
+```objc
 @interface NYTSection: NSObject
 
-@property (nonatomic) NSString *headline;
+@property (strong, nonatomic) NSString *publicHeadline;
+@property (strong, nonatomic) NSString *headline;
 
 @end
 ```
 
-**Not:**
-
-```objc
-@interface NYTSection : NSObject {
-    NSString *headline;
-}
-```
 
 ## Naming
 
