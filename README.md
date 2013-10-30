@@ -1,4 +1,4 @@
-# NYTimes Objective-C Style Guide
+# DD Objective-C Style Guide
 
 This style guide outlines the coding conventions of the iOS team at The New York Times. We welcome your feedback in [issues](https://github.com/NYTimes/objetive-c-style-guide/issues), [pull requests](https://github.com/NYTimes/objetive-c-style-guide/pulls) and [tweets](https://twitter.com/nytimesmobile). Also, [we're hiring](http://jobs.nytco.com/job/New-York-iOS-Developer-Job-NY/2572221/).
 
@@ -143,7 +143,7 @@ Variables should be named as descriptively as possible. Single letter variable n
 
 Asterisks indicating pointers belong with the variable, e.g., `NSString *text` not `NSString* text` or `NSString * text`, except in the case of constants.
 
-Property definitions should be used in place of naked instance variables whenever possible. Direct instance variable access should be avoided except in initializer methods (`init`, `initWithCoder:`, etc…), `dealloc` methods and within custom setters and getters. For more information on using Accessor Methods in Initializer Methods and dealloc, see [here](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/mmPractical.html#//apple_ref/doc/uid/TP40004447-SW6).
+For not public variables use 
 
 **For example:**
 
@@ -289,13 +289,18 @@ CGFloat height = frame.size.height;
 ## Constants
 
 Constants are preferred over in-line string literals or numbers, as they allow for easy reproduction of commonly used variables and can be quickly changed without the need for find and replace. Constants should be declared as `static` constants and not `#define`s unless explicitly being used as a macro.
-
+Constant names (#defines, enums, const local variables, etc.) should start with a lowercase k and then use mixed case to delimit words.
+For integer constant use NS_ENUM.
 **For example:**
 
 ```objc
-static NSString * const NYTAboutViewControllerCompanyName = @"The New York Times Company";
+static NSString * const kAFKAboutViewControllerCompanyName = @"The New York Times Company";
 
-static const CGFloat NYTImageThumbnailHeight = 50.0;
+static const CGFloat kAFKImageThumbnailHeight = 50.0;
+
+NS_ENUM(NSInteger, AFKClassNameTableSize) {
+    kAFKClassNameTableSizeRowsCount = 10
+};
 ```
 
 **Not:**
@@ -314,8 +319,8 @@ When using `enum`s, it is recommended to use the new fixed underlying type speci
 
 ```objc
 typedef NS_ENUM(NSInteger, NYTAdRequestState) {
-    NYTAdRequestStateInactive,
-    NYTAdRequestStateLoading
+    kNYTAdRequestStateInactive,
+    kNYTAdRequestStateLoading
 };
 ```
 
