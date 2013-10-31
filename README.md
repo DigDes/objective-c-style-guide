@@ -36,26 +36,26 @@
 
 ## Использование точек
 
-Dot-notation should **always** be used for accessing and mutating properties. Bracket notation is preferred in all other instances.
+Используйте точки только для доступа к свойствам. Во всех остальных случаях используйте квадратные скобки.
 
-**For example:**
+**Хорошо:**
 ```objc
 view.backgroundColor = [UIColor orangeColor];
 [UIApplication sharedApplication].delegate;
 ```
 
-**Not:**
+**Плохо:**
 ```objc
 [view setBackgroundColor:[UIColor orangeColor]];
 UIApplication.sharedApplication.delegate;
 ```
 
-## Spacing
+## Отступы
 
-* Indent using 4 spaces. Never indent with tabs. Be sure to set this preference in Xcode.
-* Method braces and other braces (`if`/`else`/`switch`/`while` etc.) always open on the same line as the statement but close on a new line.
+* Для отсутпа используйте 4 пробела. Никогда не используйте табы. Хотя так и настроен Xcode.
+* Фигурные скобки в методах и других конструкциях(например `if`/`else`/`switch`/`while`) всегда всегда долдны открываться в той же строке, что и условие. Но закрываться должны на другой строке.
 
-**For example:**
+**Хорошо:**
 ```objc
 if (user.isHappy) {
 //Do something
@@ -64,10 +64,10 @@ else {
 //Do something else
 }
 ```
-* There should be exactly one blank line between methods to aid in visual clarity and organization. Whitespace within methods should separate functionality, but often there should probably be new methods.
-* `@synthesize` and `@dynamic` should each be declared on new lines in the implementation.
+* Всегда стоит добавлять пустую строку между методами- это придаст больше четкости коду. Отступы внутри методов всегда должны отделять функциональность, которую можно было бы вынести в отдельные методы.
+* `@synthesize` и `@dynamic` должны начинаться но новой строке.
 
-## Conditionals
+## Условия
 
 Conditional bodies should always use braces even when a conditional body could be written without braces (e.g., it is one line only) to prevent [errors](https://github.com/NYTimes/objective-c-style-guide/issues/26#issuecomment-22074256). These errors include adding a second line and expecting it to be part of the if-statement. Another, [even more dangerous defect](http://programmers.stackexchange.com/a/16530) may happen where the line "inside" the if-statement is commented out, and the next line unwittingly becomes part of the if-statement. In addition, this style is more consistent with all other conditionals, and therefore more easily scannable.
 
