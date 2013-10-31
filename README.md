@@ -1,40 +1,40 @@
 # DD Objective-C Style Guide
 
-Этот руководство по стилю кода, основанное на руководстве для разработчиков в The New York Times(https://github.com/NYTimes/objective-c-style-guide/contributors)
+Это руководство по стилю кода, основанное на руководстве для разработчиков в The New York Times(https://github.com/NYTimes/objective-c-style-guide/contributors)
 
 ## Введение
 
-Here are some of the documents from Apple that informed the style guide. If something isn't mentioned here, it's probably covered in great detail in one of these:
+Ниже представлены документы Apple по этой же теме:
 
 * [The Objective-C Programming Language](http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjectiveC/Introduction/introObjectiveC.html)
 * [Cocoa Fundamentals Guide](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/CocoaFundamentals/Introduction/Introduction.html)
 * [Coding Guidelines for Cocoa](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/CodingGuidelines/CodingGuidelines.html)
 * [iOS App Programming Guide](http://developer.apple.com/library/ios/#documentation/iphone/conceptual/iphoneosprogrammingguide/Introduction/Introduction.html)
 
-## Table of Contents
+## Содержимое
 
-* [Dot-Notation Syntax](#dot-notation-syntax)
-* [Spacing](#spacing)
-* [Conditionals](#conditionals)
-  * [Ternary Operator](#ternary-operator)
-* [Error handling](#error-handling)
-* [Methods](#methods)
-* [Variables](#variables)
-* [Naming](#naming)
-  * [Underscores](#underscores)
-* [Comments](#comments)
-* [Init & Dealloc](#init-and-dealloc)
-* [Literals](#literals)
-* [CGRect Functions](#cgrect-functions)
-* [Constants](#constants)
-* [Enumerated Types](#enumerated-types)
-* [Private Properties](#private-properties)
-* [Image Naming](#image-naming)
-* [Booleans](#booleans)
-* [Singletons](#singletons)
-* [Xcode Project](#xcode-project)
+* [Использование точек](#dot-notation-syntax)
+* [Отсутупы](#spacing)
+* [Условия](#conditionals)
+  * [Тернарный оператор](#ternary-operator)
+* [Передача ошибок](#error-handling)
+* [Методы](#methods)
+* [Перменные](#variables)
+* [Правила именования](#naming)
+  * [Подчеркивания](#underscores)
+* [Комментарии](#comments)
+* [Инициализация и уничтожение](#init-and-dealloc)
+* [Литералы](#literals)
+* [CGRect функции](#cgrect-functions)
+* [Константы](#constants)
+* [Тип перечисление](#enumerated-types)
+* [Private свойства](#private-properties)
+* [Именование шрафических ресурсов](#image-naming)
+* [Тип boolean](#booleans)
+* [Синглтон](#singletons)
+* [Xcode проект](#xcode-project)
 
-## Dot-Notation Syntax
+## Использование точек
 
 Dot-notation should **always** be used for accessing and mutating properties. Bracket notation is preferred in all other instances.
 
