@@ -104,11 +104,11 @@ result = a > b ? x : y;
 result = a > b ? x = c > d ? c : d : y;
 ```
 
-## Error handling
+## Передача ошибок
 
-When methods return an error parameter by reference, switch on the returned value, not the error variable.
+Когда метод возвращает ошибку по ссылке, проверяйте возвращаемое значение, а не ошибку.
 
-**For example:**
+**Хорошо:**
 ```objc
 NSError *error;
 if (![self trySomethingWithError:&error]) {
@@ -116,7 +116,7 @@ if (![self trySomethingWithError:&error]) {
 }
 ```
 
-**Not:**
+**Плохо:**
 ```objc
 NSError *error;
 [self trySomethingWithError:&error];
@@ -124,8 +124,8 @@ if (error) {
     // Handle Error
 }
 ```
+Некоторые методы из API Apple возвращают ошибку(не NULL) даже в случае успешного выполнения, по этой причине не анализируйте оишбочное значение
 
-Some of Apple’s APIs write garbage values to the error parameter (if non-NULL) in successful cases, so switching on the error can cause false negatives (and subsequently crash).
 
 ## Methods
 
