@@ -18,7 +18,7 @@
 * [Условия](#conditionals)
   * [Тернарный оператор](#ternary-operator)
 * [Передача ошибок](#error-handling)
-* [Методы](#methods)
+* [Методы](#Методы)
 * [Перменные](#variables)
 * [Правила именования](#naming)
   * [Подчеркивания](#underscores)
@@ -127,11 +127,11 @@ if (error) {
 Некоторые методы из API Apple возвращают ошибку(не NULL) даже в случае успешного выполнения, по этой причине не анализируйте оишбочное значение
 
 
-## Methods
+## Методы
 
-In method signatures, there should be a space after the scope (-/+ symbol). There should be a space between the method segments.
+В определениях методов пробелы должны стоять после типа методов (символы - и +). Так же пробелами нужно разделять параметры методов.
 
-**For Example**:
+**Например**:
 ```objc
 - (void)setExampleText:(NSString *)text image:(UIImage *)image;
 ```
