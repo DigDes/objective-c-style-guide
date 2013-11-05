@@ -69,37 +69,37 @@ else {
 
 ## Условия
 
-Conditional bodies should always use braces even when a conditional body could be written without braces (e.g., it is one line only) to prevent [errors](https://github.com/NYTimes/objective-c-style-guide/issues/26#issuecomment-22074256). These errors include adding a second line and expecting it to be part of the if-statement. Another, [even more dangerous defect](http://programmers.stackexchange.com/a/16530) may happen where the line "inside" the if-statement is commented out, and the next line unwittingly becomes part of the if-statement. In addition, this style is more consistent with all other conditionals, and therefore more easily scannable.
+Тело условия необходимо писать в фигурных скобках даже в том случае, если это можно и не делать(когда оно может быть написано в одну строку) [errors](https://github.com/NYTimes/objective-c-style-guide/issues/26#issuecomment-22074256). Это исключит ошибки возникающие, когда следующая строка не попадает под условие, хотя должна(так думает разработчик). В другом случае, ошибка может возникнуть когда строка внутри условного оператора закоментирована и следующая строка становится телом условного оператора . К тому же, данный стиль лучше согласуется с оформлением других блоков и становится лучше читаемым.
 
-**For example:**
+**Хорошо:**
 ```objc
 if (!error) {
     return success;
 }
 ```
 
-**Not:**
+**Плохо:**
 ```objc
 if (!error)
     return success;
 ```
 
-or
+или
 
 ```objc
 if (!error) return success;
 ```
 
-### Ternary Operator
+### Тернарный оператор
 
-The Ternary operator, ? , should only be used when it increases clarity or code neatness. A single condition is usually all that should be evaluated. Evaluating multiple conditions is usually more understandable as an if statement, or refactored into instance variables.
+Тернарный оператор, ? , используйте только, когда это улучшает читаемость и понятность кода. В том случае, когда используется олно условие. Для нескольких условий более предпочтительно использовать оператор "if" или переменные.
 
-**For example:**
+**Хорошо:**
 ```objc
 result = a > b ? x : y;
 ```
 
-**Not:**
+**Плохо:**
 ```objc
 result = a > b ? x = c > d ? c : d : y;
 ```
