@@ -19,7 +19,7 @@
   * [Тернарный оператор](#ternary-operator)
 * [Передача ошибок](#error-handling)
 * [Методы](#Методы)
-* [Перменные](#variables)
+* [Перменные](#Переменные)
 * [Правила именования](#naming)
   * [Подчеркивания](#underscores)
 * [Комментарии](#comments)
@@ -135,28 +135,30 @@ if (error) {
 ```objc
 - (void)setExampleText:(NSString *)text image:(UIImage *)image;
 ```
-## Variables
+## Переменные
 
-Variables should be named as descriptively as possible. Single letter variable names should be avoided except in `for()` loops.
+Переменные ну;но назвыать максимально информативно. Имена переменных, состоящие из одной буквы допускажтся только для счётчика в цикле `for()`.
 
-Asterisks indicating pointers belong with the variable, e.g., `NSString *text` not `NSString* text` or `NSString * text`, except in the case of constants.
+Звёздочку указателя нужно ставить впритык к имени переменной, например `NSString *text` а не  `NSString* text` или `NSString * text`, исключение составляют [константы](#Константы).
 
-For not public variables use ivars, public properties use only for vars you need make accessable from other classes.
+Для privarte и protected переменных (которые используются исключительно внутри класса, и/или внутри подклассов) необходимо испольовать instance-переменные, а не свойства. Не забывайте указывать область видимости переменной, так как по-умолчанию область видимости instance-переменных - protected.
 
-**For example:**
+Свойства можно использовать только для public-переменных, доступ к которым нужно предоставить снаружи класса. Исключения составляют свойства, для которых необходимо переопределить сеттер и/или геттер. Их нужно хранить в `.m` файле, в безымянной private-категории.
+
+**Например:**
 
 ```objc
-@interface NYTSection : NSObject {
-@private
+@interface DDSection : NSObject {
+ @private
     NSString *_headline;
 }
 
 @property (strong, nonatomic) NSString *publicHeadline;
 ```
 
-**Not:**
+**А не:**
 ```objc
-@interface NYTSection: NSObject
+@interface DDSection: NSObject
 
 @property (strong, nonatomic) NSString *publicHeadline;
 @property (strong, nonatomic) NSString *headline;
