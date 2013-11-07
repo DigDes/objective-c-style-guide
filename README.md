@@ -167,67 +167,70 @@ if (error) {
 ```
 
 
-## Naming
+## Именование
 
-Apple naming conventions should be adhered to wherever possible, especially those related to [memory management rules](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html) ([NARC](http://stackoverflow.com/a/2865194/340508)).
+ПО возможности старайтесь соблюдать соглашение Apple о именовании[memory management rules](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html) ([NARC](http://stackoverflow.com/a/2865194/340508)).
 
-Long, descriptive method and variable names are good.
+Используйте подробные имена перменных.
 
-**For example:**
+**Хорошо:**
 
 ```objc
 UIButton *settingsButton;
 ```
 
-**Not**
+**Плохо:**
 
 ```objc
 UIButton *setBut;
 ```
+Трехбуквенные префиксы (например 'NYT') всегда используйте для имен классов и констант, однако ими можно пренебречь для сущностей Core Data 
+Константы должны именоваться ВерблюжьемРегистре http://ru.wikipedia.org/wiki/CamelCase, где все слова начинаются с большой буквы и начинаться с префикса класса, в котором описаны.
 
-A three letter prefix (e.g. `NYT`) should always be used for class names and constants, however may be omitted for Core Data entity names. Constants should be camel-case with all words capitalized and prefixed by the related class name for clarity.
 
-**For example:**
+**Хорошо:**
 
 ```objc
 static const NSTimeInterval NYTArticleViewControllerNavigationFadeAnimationDuration = 0.3;
 ```
 
-**Not:**
+**Плохо:**
 
 ```objc
 static const NSTimeInterval fadetime = 1.7;
 ```
 
-Properties should be camel-case with the leading word being lowercase. **If Xcode can automatically synthesize the variable, then let it.** Otherwise, in order to be consistent, the backing instance variables for these properties should be camel-case with the leading word being lowercase and a leading underscore. This is the same format as Xcode's default synthesis.
+Свойства должны именоваться тоже в ВерблюжьемРегистре, только первое слово в нижнем регистре.
+**Если Xcode  автоматически синтезировал перменные, оставьте их** В противном случае, согласно выше сказанном, имена переменных для этих свойств должны начинаться с подчеркивания и первое слово должно быть в нижнем регистре. В таком формате Xcode обеспечивает связь между свойствами и переменными. 
 
-**For example:**
+**Хорошо:**
 
 ```objc
 @synthesize descriptiveVariableName = _descriptiveVariableName;
 ```
 
-**Not:**
+**Плохо:**
 
 ```objc
 id varnm;
 ```
 
-### Underscores
+### Подчеркивания
 
-When using properties, instance variables should always be accessed and mutated using `self.`. This means that all properties will be visually distinct, as they will all be prefaced with `self.`. Local variables should not contain underscores.
+Когда используете свойства, переменные класса всегда должны быть доступны и изменяемы через "self." Это значит что все свойства должны визуально отличаться, когда к ним обращаются через "self.". Локальные переменные не должны содержать с подчеркивания.
 
-## Comments
 
-When they are needed, comments should be used to explain **why** a particular piece of code does something. Any comments that are used must be kept up-to-date or deleted.
+## Комментарии
 
-Block comments should generally be avoided, as code should be as self-documenting as possible, with only the need for intermittent, few-line explanations. This does not apply to those comments used to generate documentation.
 
-## init and dealloc
+Когдав вам необходимо, используйте комментарий, который должен объяснять почему часть кода делает что-то. Любые комментарии, которые используются, должны быть сохранены или удалены.
+Необходимо избегать блоки комментариев, код должен быть самодокументирован(и не требовать излишних комментариев), только если требуется -  несколько строчек объясняющих. Это не распространяется на комментарии, которые используются для генерации документации.
 
-`dealloc` methods should be placed at the top of the implementation, directly after the `@synthesize` and `@dynamic` statements. `init` should be placed directly below the `dealloc` methods of any class.
+## Инициализация и удаление
 
-`init` methods should be structured like this:
+Удаление: `dealloc` методы должны помещаться вверху реализации, сразу после  `@synthesize` и `@dynamic` . Инициализация: vtnjl `init` должен быть расположен сразу после `dealloc` методов в любых классах.
+
+Структура методов `init` должны быть такой:
 
 ```objc
 - (instancetype)init {
