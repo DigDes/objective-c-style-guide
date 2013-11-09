@@ -14,23 +14,23 @@
 ## Содержимое
 
 * [Использование точек](#dot-notation-syntax)
-* [Отсутупы](#spacing)
-* [Условия](#conditionals)
-  * [Тернарный оператор](#ternary-operator)
-* [Передача ошибок](#error-handling)
+* [Отсутупы](#Отступы)
+* [Условия](#Условия)
+  * [Тернарный оператор](#Тернарный-оператор)
+* [Обработка ошибок](#Обработка-ошибок)
 * [Методы](#Методы)
 * [Перменные](#Переменные)
-* [Правила именования](#naming)
-  * [Подчеркивания](#underscores)
-* [Комментарии](#comments)
-* [Инициализация и уничтожение](#init-and-dealloc)
+* [Правила именования](#Правила-именования)
+  * [Подчеркивания](#Подчеркивания)
+* [Комментарии](#Комментарии)
+* [Инициализация и уничтожение объектов](#Инициализация-и-уничтожение-объектов)
 * [Литералы](#literals)
 * [CGRect функции](#cgrect-functions)
 * [Константы](#constants)
 * [Тип перечисление](#enumerated-types)
 * [Private свойства](#private-properties)
-* [Именование шрафических ресурсов](#image-naming)
-* [Тип boolean](#booleans)
+* [Именование графических ресурсов](#image-naming)
+* [Логический тип BOOL](#booleans)
 * [Синглтон](#singletons)
 * [Xcode проект](#xcode-project)
 
@@ -52,10 +52,10 @@ UIApplication.sharedApplication.delegate;
 
 ## Отступы
 
-* Для отсутпа используйте 4 пробела. Никогда не используйте табы. Хотя так и настроен Xcode.
+* Для отсутпа используйте табы.
 * Фигурные скобки в методах и других конструкциях(например `if`/`else`/`switch`/`while`) всегда всегда долдны открываться в той же строке, что и условие. Но закрываться должны на другой строке.
 
-**Хорошо:**
+**Например:**
 ```objc
 if (user.isHappy) {
 //Do something
@@ -65,7 +65,18 @@ else {
 }
 ```
 * Всегда стоит добавлять пустую строку между методами- это придаст больше четкости коду. Отступы внутри методов всегда должны отделять функциональность, которую можно было бы вынести в отдельные методы.
-* `@synthesize` и `@dynamic` должны начинаться но новой строке.
+* `@synthesize` и `@dynamic` должны начинаться на новой строке.
+* Модификаторы области видимости типа `@public`, `@protected` и подобные типа `@optional` в протоколах нужно сдвигать на 1 пробел вправо.
+
+**Например:**
+```objc
+@interface AFKSection : NSObject {
+ @private
+	NSString *_headline;
+ @protected
+	NSInteger _count;
+}
+```
 
 ## Условия
 
@@ -104,7 +115,7 @@ result = a > b ? x : y;
 result = a > b ? x = c > d ? c : d : y;
 ```
 
-## Передача ошибок
+## Обработка ошибок
 
 Когда метод возвращает ошибку по ссылке, проверяйте возвращаемое значение, а не ошибку.
 
@@ -145,10 +156,10 @@ if (error) {
 
 Свойства можно использовать только для public-переменных, доступ к которым нужно предоставить снаружи класса. Исключения составляют свойства, для которых необходимо переопределить сеттер и/или геттер. Их нужно хранить в `.m` файле, в безымянной private-категории.
 
-**Например:**
+**Хорошо:**
 
 ```objc
-@interface DDSection : NSObject {
+@interface AFKSection : NSObject {
  @private
     NSString *_headline;
 }
@@ -156,9 +167,9 @@ if (error) {
 @property (strong, nonatomic) NSString *publicHeadline;
 ```
 
-**А не:**
+**Плохо:**
 ```objc
-@interface DDSection: NSObject
+@interface AFKSection: NSObject
 
 @property (strong, nonatomic) NSString *publicHeadline;
 @property (strong, nonatomic) NSString *headline;
@@ -167,11 +178,11 @@ if (error) {
 ```
 
 
-## Именование
+## Правила именования
 
-ПО возможности старайтесь соблюдать соглашение Apple о именовании[memory management rules](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html) ([NARC](http://stackoverflow.com/a/2865194/340508)).
+По возможности старайтесь соблюдать соглашение Apple о именовании [memory management rules](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html) ([NARC](http://stackoverflow.com/a/2865194/340508)).
 
-Используйте подробные имена перменных.
+Используйте подробные имена переменных.
 
 **Хорошо:**
 
@@ -184,14 +195,14 @@ UIButton *settingsButton;
 ```objc
 UIButton *setBut;
 ```
-Трехбуквенные префиксы (например 'NYT') всегда используйте для имен классов и констант, однако ими можно пренебречь для сущностей Core Data 
-Константы должны именоваться ВерблюжьемРегистре http://ru.wikipedia.org/wiki/CamelCase, где все слова начинаются с большой буквы и начинаться с префикса класса, в котором описаны.
+Трехбуквенные префиксы (например 'AFK') всегда используйте для имен классов и констант, однако ими можно пренебречь для сущностей Core Data 
+Константы должны именоваться ВерблюжьемРегистре http://ru.wikipedia.org/wiki/CamelCase, где все слова начинаются с большой буквы и начинаться с буквы `k` и префикса класса, в котором описаны.
 
 
 **Хорошо:**
 
 ```objc
-static const NSTimeInterval NYTArticleViewControllerNavigationFadeAnimationDuration = 0.3;
+static const NSTimeInterval kAFKArticleViewControllerNavigationFadeAnimationDuration = 0.3;
 ```
 
 **Плохо:**
@@ -201,7 +212,7 @@ static const NSTimeInterval fadetime = 1.7;
 ```
 
 Свойства должны именоваться тоже в ВерблюжьемРегистре, только первое слово в нижнем регистре.
-**Если Xcode  автоматически синтезировал перменные, оставьте их** В противном случае, согласно выше сказанном, имена переменных для этих свойств должны начинаться с подчеркивания и первое слово должно быть в нижнем регистре. В таком формате Xcode обеспечивает связь между свойствами и переменными. 
+**Если Xcode  автоматически синтезировал перменные, оставьте их** В противном случае, согласно выше сказанному, имена переменных для этих свойств должны начинаться с подчеркивания и первое слово должно быть в нижнем регистре. В таком формате Xcode обеспечивает связь между свойствами и переменными. 
 
 **Хорошо:**
 
@@ -223,12 +234,12 @@ id varnm;
 ## Комментарии
 
 
-Когдав вам необходимо, используйте комментарий, который должен объяснять почему часть кода делает что-то. Любые комментарии, которые используются, должны быть сохранены или удалены.
+Когда вам необходимо, используйте комментарий, который должен объяснять почему часть кода делает что-то. Любые комментарии, которые используются, должны быть сохранены или удалены.
 Необходимо избегать блоки комментариев, код должен быть самодокументирован(и не требовать излишних комментариев), только если требуется -  несколько строчек объясняющих. Это не распространяется на комментарии, которые используются для генерации документации.
 
-## Инициализация и удаление
+## Инициализация и удаление объектов
 
-Удаление: `dealloc` методы должны помещаться вверху реализации, сразу после  `@synthesize` и `@dynamic` . Инициализация: vtnjl `init` должен быть расположен сразу после `dealloc` методов в любых классах.
+Удаление: `dealloc` методы должны помещаться вверху реализации, сразу после  `@synthesize` и `@dynamic` . Инициализация: метод `init` должен быть расположен сразу после `dealloc` методов в любых классах.
 
 Структура методов `init` должны быть такой:
 
@@ -318,7 +329,7 @@ NS_ENUM(NSInteger, AFKClassNameTableSize) {
  #define thumbnailHeight 2
 ```
 
-## Enumerated Types
+## Enumerated type
 
 When using `enum`s, it is recommended to use the new fixed underlying type specification because it has stronger type checking and code completion. The SDK now includes a macro to facilitate and encourage use of fixed underlying types — `NS_ENUM()`
 
@@ -347,7 +358,7 @@ Private properties should be declared in class extensions (anonymous categories)
 @end
 ```
 
-## Image Naming
+## Images naming
 
 Image names should be named consistently to preserve organization and developer sanity. They should be named as one camel case string with a description of their purpose, followed by the un-prefixed name of the class or property they are customizing (if there is one), followed by a further description of color and/or placement, and finally their state.
 
@@ -358,7 +369,7 @@ Image names should be named consistently to preserve organization and developer 
 
 Images that are used for a similar purpose should be grouped in respective groups in an Images folder.
 
-## Booleans
+## Логические типы
 
 Since `nil` resolves to `NO` it is unnecessary to compare it in conditions. Never compare something directly to `YES`, because `YES` is defined to 1 and a `BOOL` can be up to 8 bits.
 
@@ -403,7 +414,7 @@ If the name of a `BOOL` property is expressed as an adjective, the property can 
 ```
 Text and example taken from the [Cocoa Naming Guidelines](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/CodingGuidelines/Articles/NamingIvarsAndTypes.html#//apple_ref/doc/uid/20001284-BAJGIIJE).
 
-## Singletons
+## Синглтоны
 
 Singleton objects should use a thread-safe pattern for creating their shared instance.
 ```objc
