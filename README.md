@@ -11,7 +11,7 @@
 * [Coding Guidelines for Cocoa](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/CodingGuidelines/CodingGuidelines.html)
 * [iOS App Programming Guide](http://developer.apple.com/library/ios/#documentation/iphone/conceptual/iphoneosprogrammingguide/Introduction/Introduction.html)
 
-## Содержимое
+## Содержание
 
 * [Использование точек](#dot-notation-syntax)
 * [Отсутупы](#Отступы)
@@ -19,19 +19,19 @@
   * [Тернарный оператор](#Тернарный-оператор)
 * [Обработка ошибок](#Обработка-ошибок)
 * [Методы](#Методы)
-* [Перменные](#Переменные)
+* [Переменные](#Переменные)
 * [Правила именования](#Правила-именования)
   * [Подчеркивания](#Подчеркивания)
 * [Комментарии](#Комментарии)
 * [Инициализация и уничтожение объектов](#Инициализация-и-уничтожение-объектов)
-* [Литералы](#literals)
+* [Литералы](#Литералы)
 * [CGRect функции](#cgrect-functions)
-* [Константы](#constants)
-* [Тип перечисление](#enumerated-types)
+* [Константы](#Константы)
+* [Тип перечисление](#Тип-перечисление)
 * [Private свойства](#private-properties)
-* [Именование графических ресурсов](#image-naming)
+* [Именование графических ресурсов](#Именование-графических-ресурсов)
 * [Логический тип BOOL](#booleans)
-* [Синглтон](#singletons)
+* [Синглтоны](#Синглтоны)
 * [Xcode проект](#xcode-project)
 
 ## Использование точек
@@ -52,8 +52,8 @@ UIApplication.sharedApplication.delegate;
 
 ## Отступы
 
-* Для отсутпа используйте табы.
-* Фигурные скобки в методах и других конструкциях(например `if`/`else`/`switch`/`while`) всегда всегда долдны открываться в той же строке, что и условие. Но закрываться должны на другой строке.
+* Для отсупа используйте табы.
+* Фигурные скобки в методах и других конструкциях (например `if`/`else`/`switch`/`while`) всегда всегда должны открываться в той же строке, что и условие. Но закрываться должны на другой строке.
 
 **Например:**
 ```objc
@@ -64,9 +64,9 @@ else {
 //Do something else
 }
 ```
-* Всегда стоит добавлять пустую строку между методами- это придаст больше четкости коду. Отступы внутри методов всегда должны отделять функциональность, которую можно было бы вынести в отдельные методы.
+* Всегда стоит добавлять пустую строку между методами - это придаст больше четкости коду. Отступы внутри методов всегда должны отделять функциональность, которую можно было бы вынести в отдельные методы.
 * `@synthesize` и `@dynamic` должны начинаться на новой строке.
-* Модификаторы области видимости типа `@public`, `@protected` и подобные типа `@optional` в протоколах нужно сдвигать на 1 пробел вправо.
+* Модификаторы области видимости типа `@public`, `@protected` и подобные (типа `@optional`) , в протоколах нужно сдвигать на один пробел вправо.
 
 **Например:**
 ```objc
@@ -80,7 +80,7 @@ else {
 
 ## Условия
 
-Тело условия необходимо писать в фигурных скобках даже в том случае, если это можно и не делать(когда оно может быть написано в одну строку) [errors](https://github.com/NYTimes/objective-c-style-guide/issues/26#issuecomment-22074256). Это исключит ошибки возникающие, когда следующая строка не попадает под условие, хотя должна(так думает разработчик). В другом случае, ошибка может возникнуть когда строка внутри условного оператора закоментирована и следующая строка становится телом условного оператора . К тому же, данный стиль лучше согласуется с оформлением других блоков и становится лучше читаемым.
+Тело условия необходимо писать в фигурных скобках даже в том случае, если это можно и не делать (когда оно может быть написано в одну строку) [errors](https://github.com/NYTimes/objective-c-style-guide/issues/26#issuecomment-22074256). Это исключит ошибки, возникающие когда следующая строка не попадает под условие, хотя должна (так думает разработчик). В другом случае, ошибка может возникнуть когда строка внутри условного оператора закоментирована и следующая строка становится телом условного оператора . К тому же, данный стиль лучше согласуется с оформлением других блоков и становится лучше читаемым.
 
 **Хорошо:**
 ```objc
@@ -135,7 +135,7 @@ if (error) {
     // Handle Error
 }
 ```
-Некоторые методы из API Apple возвращают ошибку(не NULL) даже в случае успешного выполнения, по этой причине не анализируйте оишбочное значение
+Некоторые методы из API Apple возвращают ошибку(не NULL) даже в случае успешного выполнения, по этой причине не анализируйте ошибочное значение.
 
 
 ## Методы
@@ -228,7 +228,7 @@ id varnm;
 
 ### Подчеркивания
 
-Когда используете свойства, переменные класса всегда должны быть доступны и изменяемы через "self." Это значит что все свойства должны визуально отличаться, когда к ним обращаются через "self.". Локальные переменные не должны содержать с подчеркивания.
+Когда используете свойства, instance-переменные всегда должны быть доступны и изменяемы через "self." Это значит что все свойства должны визуально отличаться, когда к ним обращаются через "self.". Локальные переменные не должны содержать с подчеркивания.
 
 
 ## Комментарии
@@ -254,11 +254,11 @@ id varnm;
 }
 ```
 
-## Literals
+## Литералы
 
-`NSString`, `NSDictionary`, `NSArray`, and `NSNumber` literals should be used whenever creating immutable instances of those objects. Pay special care that `nil` values not be passed into `NSArray` and `NSDictionary` literals, as this will cause a crash.
+Для создания неизменяемых объектов (immutable objects) используйте литералы классов `NSString`, `NSDictionary`, `NSArray`, и `NSNumber`. Обратите внимание, что `nil` значения не могут быть переданны в объекты-литералы классов `NSArray` и `NSDictionary`, так как их передача приведет к ошибке.
 
-**For example:**
+**Хорошо:**
 
 ```objc
 NSArray *names = @[@"Brian", @"Matt", @"Chris", @"Alex", @"Steve", @"Paul"];
@@ -267,7 +267,7 @@ NSNumber *shouldUseLiterals = @YES;
 NSNumber *buildingZIPCode = @10018;
 ```
 
-**Not:**
+**Плохо:**
 
 ```objc
 NSArray *names = [NSArray arrayWithObjects:@"Brian", @"Matt", @"Chris", @"Alex", @"Steve", @"Paul", nil];
@@ -278,11 +278,13 @@ NSNumber *buildingZIPCode = [NSNumber numberWithInteger:10018];
 
 ## CGRect Functions
 
-When accessing the `x`, `y`, `width`, or `height` of a `CGRect`, always use the [`CGGeometry` functions](http://developer.apple.com/library/ios/#documentation/graphicsimaging/reference/CGGeometry/Reference/reference.html) instead of direct struct member access. From Apple's `CGGeometry` reference:
+Вместо прямого доступа к полям `x`, `y`, `width`, или `height` структуры `CGRect`, всегда используйте [функции `CGGeometry`](http://developer.apple.com/library/ios/#documentation/graphicsimaging/reference/CGGeometry/Reference/reference.html).
 
-> All functions described in this reference that take CGRect data structures as inputs implicitly standardize those rectangles before calculating their results. For this reason, your applications should avoid directly reading and writing the data stored in the CGRect data structure. Instead, use the functions described here to manipulate rectangles and to retrieve their characteristics.
+Из документации Apple `CGGeometry`:
+  
+> Описанные в данном документе функции, принимающие структуру CGRect в качестве аргумента, неявно приводят эти струкутры к стандартному виду. Поэтому, избегайте прямого доступа к полям структуры CGRect при написании программы. Вместо этого для работы со структурами и для получения значений отдельных полей используйте функции, описанные в данном руководстве.
 
-**For example:**
+**Хорошо:**
 
 ```objc
 CGRect frame = self.view.frame;
@@ -293,7 +295,7 @@ CGFloat width = CGRectGetWidth(frame);
 CGFloat height = CGRectGetHeight(frame);
 ```
 
-**Not:**
+**Плохо:**
 
 ```objc
 CGRect frame = self.view.frame;
@@ -304,12 +306,13 @@ CGFloat width = frame.size.width;
 CGFloat height = frame.size.height;
 ```
 
-## Constants
+## Константы
 
-Constants are preferred over in-line string literals or numbers, as they allow for easy reproduction of commonly used variables and can be quickly changed without the need for find and replace. Constants should be declared as `static` constants and not `#define`s unless explicitly being used as a macro.
-Constant names (#defines, enums, const local variables, etc.) should start with a lowercase k and then use mixed case to delimit words.
-For integer constant use NS_ENUM.
-**For example:**
+Избегайте использования "магических чисел"(magic numbers) и строковых литералов. Вместо этого определяйте их как переменные-константы. Это позволяет сделать код намного понятней и облегчает их изменение. Объявляйте константы с модификатором `static` и не объявляйте при помощи `#define`. Используйте `#define` для макросов.
+Названия констант (#defin-ов, enum-ов, локальных переменных-констант, и т.д.) должны начинаться со строчной буквы k. Для разделения слов используйте mixed case.
+Для целочисленных (integer) констант испоьзуйте NS_ENUM.
+
+**Хорошо:**
 
 ```objc
 static NSString * const kAFKAboutViewControllerCompanyName = @"The New York Times Company";
@@ -321,7 +324,7 @@ NS_ENUM(NSInteger, AFKClassNameTableSize) {
 };
 ```
 
-**Not:**
+**Плохо:**
 
 ```objc
  #define CompanyName @"The New York Times Company"
@@ -329,11 +332,12 @@ NS_ENUM(NSInteger, AFKClassNameTableSize) {
  #define thumbnailHeight 2
 ```
 
-## Enumerated type
+## Тип перечисление
 
 When using `enum`s, it is recommended to use the new fixed underlying type specification because it has stronger type checking and code completion. The SDK now includes a macro to facilitate and encourage use of fixed underlying types — `NS_ENUM()`
-
-**Example:**
+<!--При использовании `enum`ов рекомендуется использовать нововведеный фиксированный спецификатор типа т к он имеет более строгую проверку типов и лучшее автозаполнение кода. Теперь SDK включает в себя макрос, облегчающий и улучшающий для использования фиксированного идентификатора типов - `NS_ENUM()`
+-->
+**Хорошо:**
 
 ```objc
 typedef NS_ENUM(NSInteger, NYTAdRequestState) {
@@ -342,11 +346,11 @@ typedef NS_ENUM(NSInteger, NYTAdRequestState) {
 };
 ```
 
-## Private Properties
+## Private свойства
 
-Private properties should be declared in class extensions (anonymous categories) in the implementation file of a class. Named categories (such as `NYTPrivate` or `private`) should never be used unless extending another class.
+Объявляйте private-свойства в class extension (анонимных категориях) в файле с реализацией класса (.m). Используйте именованные категории (такие как `NYTPrivate` или `private`) только для расширения других классов.
 
-**For example:**
+**Хорошо:**
 
 ```objc
 @interface NYTAdvertisement ()
@@ -358,11 +362,11 @@ Private properties should be declared in class extensions (anonymous categories)
 @end
 ```
 
-## Images naming
+## Именование графических ресурсов
 
 Image names should be named consistently to preserve organization and developer sanity. They should be named as one camel case string with a description of their purpose, followed by the un-prefixed name of the class or property they are customizing (if there is one), followed by a further description of color and/or placement, and finally their state.
 
-**For example:**
+**Хорошо**
 
 * `RefreshBarButtonItem` / `RefreshBarButtonItem@2x` and `RefreshBarButtonItemSelected` / `RefreshBarButtonItemSelected@2x`
 * `ArticleNavigationBarWhite` / `ArticleNavigationBarWhite@2x` and `ArticleNavigationBarBlackSelected` / `ArticleNavigationBarBlackSelected@2x`.
@@ -371,18 +375,18 @@ Images that are used for a similar purpose should be grouped in respective group
 
 ## Логические типы
 
-Since `nil` resolves to `NO` it is unnecessary to compare it in conditions. Never compare something directly to `YES`, because `YES` is defined to 1 and a `BOOL` can be up to 8 bits.
+Не сравнвайте напрямую с `nil` в условных операторах. Никогда не делайте сравнения с `YES`, потому что `YES` определен как `(BOOL)1`, и если вы будете сравнивать `YES` со значением длиной более чем 1 байт (например short или int), то при сравнении будет использован только младший байт этого значения.
 
-This allows for more consistency across files and greater visual clarity.
+Следование этип правилам позволяет добиться единобразия в коде и улучшить его читаемость.
 
-**For example:**
+**Хорошо:**
 
 ```objc
 if (!someObject) {
 }
 ```
 
-**Not:**
+**Плохо:**
 
 ```objc
 if (someObject == nil) {
@@ -391,14 +395,14 @@ if (someObject == nil) {
 
 -----
 
-**For a `BOOL`, here are two examples:**
+**Хорошо(для типа `BOOL`):**
 
 ```objc
 if (isAwesome)
 if (![someObject boolValue])
 ```
 
-**Not:**
+**Плохо(для типа `BOOL`):**
 
 ```objc
 if ([someObject boolValue] == NO)
@@ -407,16 +411,17 @@ if (isAwesome == YES) // Never do this.
 
 -----
 
-If the name of a `BOOL` property is expressed as an adjective, the property can omit the “is” prefix but specifies the conventional name for the get accessor, for example:
+Если имя `BOOL`-свойства интерпретируется как прилагательное, то префикс "is" можно опустить, но обязательно укажите его в названии геттера.
 
 ```objc
 @property (assign, getter=isEditable) BOOL editable;
 ```
-Text and example taken from the [Cocoa Naming Guidelines](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/CodingGuidelines/Articles/NamingIvarsAndTypes.html#//apple_ref/doc/uid/20001284-BAJGIIJE).
+Текст и примеры взяты из [Cocoa Naming Guidelines](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/CodingGuidelines/Articles/NamingIvarsAndTypes.html#//apple_ref/doc/uid/20001284-BAJGIIJE).
+
 
 ## Синглтоны
 
-Singleton objects should use a thread-safe pattern for creating their shared instance.
+Для реализации синглтонов используйте потокобезопасный шаблон
 ```objc
 + (instancetype)sharedInstance {
    static id sharedInstance = nil;
@@ -429,17 +434,19 @@ Singleton objects should use a thread-safe pattern for creating their shared ins
    return sharedInstance;
 }
 ```
-This will prevent [possible and sometimes prolific crashes](http://cocoasamurai.blogspot.com/2011/04/singletons-your-doing-them-wrong.html).
+Использование шаблона предотвратит [возможные многочисленные ошибки](http://cocoasamurai.blogspot.com/2011/04/singletons-your-doing-them-wrong.html).
+ 
 
-## Xcode project
+## Xcode-проект
 
-The physical files should be kept in sync with the Xcode project files in order to avoid file sprawl. Any Xcode groups created should be reflected by folders in the filesystem. Code should be grouped not only by type, but also by feature for greater clarity.
+Физическая структура файлов должна соответствовать логической структуре файлов в Xcode. Любые группы (groups) в Xcode-проекте должны соответствовать папкам в файловой системе.
+Для большей ясности группируйте код не только по типу, но и по функциональности.
 
-When possible, always turn on "Treat Warnings as Errors" in the target's Build Settings and enable as many [additional warnings](http://boredzo.org/blog/archives/2009-11-07/warnings) as possible. If you need to ignore a specific warning, use [Clang's pragma feature](http://clang.llvm.org/docs/UsersManual.html#controlling-diagnostics-via-pragmas).
+Всегда, при возможности, включайте "Treat Warnings as Errors" в настройках (Build Settings) таргета и включайте как можно больше [дополнительных warning-ов](http://boredzo.org/blog/archives/2009-11-07/warnings). Если вам необходимо проигнорировать какой то конкретный warning, используйте [Clang's pragma feature](http://clang.llvm.org/docs/UsersManual.html#controlling-diagnostics-via-pragmas).
 
-# Other Objective-C Style Guides
 
-If ours doesn't fit your tastes, have a look at some other style guides:
+# Другие руководства по стилю кода Objective-C
+
 
 * [Google](http://google-styleguide.googlecode.com/svn/trunk/objcguide.xml)
 * [GitHub](https://github.com/github/objective-c-conventions)
