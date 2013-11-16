@@ -226,20 +226,23 @@ static const NSTimeInterval fadetime = 1.7;
 id varnm;
 ```
 
-### Подчеркивания
+### Символы подчеркивания (`_`)
 
-Когда используете свойства, instance-переменные всегда должны быть доступны и изменяемы через "self." Это значит что все свойства должны визуально отличаться, когда к ним обращаются через "self.". Локальные переменные не должны содержать с подчеркивания.
+Внутри класса доступ (чтение / запись) к instance-переменным, у которых есть свойства (properties), должен осуществляться через `self.`. В этом случае сразу будет видно, что это именно свойство. Локальные переменные не должны содержать символов подчеркивания (`_`).
 
 
 ## Комментарии
 
+Комментарии необходимо писать там, где нужно объяснить **зачем** в конкретной части кода делается что-то. Любые используемые комментарии должны поддерживаться в актуальном состоянии, либо их следует удалить.
 
-Когда вам необходимо, используйте комментарий, который должен объяснять почему часть кода делает что-то. Любые комментарии, которые используются, должны быть сохранены или удалены.
-Необходимо избегать блоки комментариев, код должен быть самодокументирован(и не требовать излишних комментариев), только если требуется -  несколько строчек объясняющих. Это не распространяется на комментарии, которые используются для генерации документации.
+Блоковых комментариев следует избегать, код должен быть самодокументирован и содержать только несколько строчек комментариев для нестабильных или временных участков.
+
+Не оставляйте закомментированные строчки кода, их следует удалить перед коммитом в репозиторий.
 
 ## Инициализация и уничтожение объектов
 
-Удаление: `dealloc` методы должны помещаться вверху реализации, сразу после  `@synthesize` и `@dynamic` . Инициализация: метод `init` должен быть расположен сразу после `dealloc` методов в любых классах.
+Удаление: метод `dealloc`, если он необходим, должен помещаться вверху реализации (`@implementation`), сразу после  `@synthesize` и `@dynamic` . 
+Инициализация: метод `init` должен быть расположен сразу после `dealloc` метода во всех классах.
 
 Структура методов `init` должны быть такой:
 
@@ -282,7 +285,7 @@ NSNumber *buildingZIPCode = [NSNumber numberWithInteger:10018];
 
 Из документации Apple `CGGeometry`:
   
-> Описанные в данном документе функции, принимающие структуру CGRect в качестве аргумента, неявно приводят эти струкутры к стандартному виду. Поэтому, избегайте прямого доступа к полям структуры CGRect при написании программы. Вместо этого для работы со структурами и для получения значений отдельных полей используйте функции, описанные в данном руководстве.
+> Описанные в данном документе функции, принимающие структуру CGRect в качестве аргумента, неявно приводят эти структуры к стандартному виду. Поэтому, избегайте прямого доступа к полям структуры CGRect при написании программы. Вместо этого для работы со структурами и для получения значений отдельных полей используйте функции, описанные в данном руководстве.
 
 **Хорошо:**
 
@@ -308,16 +311,17 @@ CGFloat height = frame.size.height;
 
 ## Константы
 
-Избегайте использования "магических чисел"(magic numbers) и строковых литералов. Вместо этого определяйте их как переменные-константы. Это позволяет сделать код намного понятней и облегчает их изменение. Объявляйте константы с модификатором `static` и не объявляйте при помощи `#define`. Используйте `#define` для макросов.
-Названия констант (#defin-ов, enum-ов, локальных переменных-констант, и т.д.) должны начинаться со строчной буквы k. Для разделения слов используйте mixed case.
-Для целочисленных (integer) констант испоьзуйте NS_ENUM.
+Избегайте использования "магических чисел"(magic numbers) и строковых литералов. Вместо этого определяйте их как переменные-константы. Это позволяет сделать код намного понятней и облегчает их изменение. 
+Объявляйте константы с модификатором `static` и не объявляйте при помощи `#define`. Используйте `#define` для **только** макросов.
+Названия констант (#define-ов, enum-ов, локальных переменных-констант, и т.д.) должны начинаться со строчной буквы k и имени класса, в котором определена константа. Для разделения слов используйте [ВерблюжийРегистр](http://ru.wikipedia.org/wiki/CamelCase).
+Для целочисленных (NSInteger) констант используйте `NS_ENUM`.
 
 **Хорошо:**
 
 ```objc
 static NSString * const kAFKAboutViewControllerCompanyName = @"The New York Times Company";
 
-static const CGFloat kAFKImageThumbnailHeight = 50.0;
+static const CGFloat kAFKClassNameImageThumbnailHeight = 50.0;
 
 NS_ENUM(NSInteger, AFKClassNameTableSize) {
     kAFKClassNameTableSizeRowsCount = 10
@@ -334,11 +338,11 @@ NS_ENUM(NSInteger, AFKClassNameTableSize) {
 
 ## Тип перечисление
 
-When using `enum`s, it is recommended to use the new fixed underlying type specification because it has stronger type checking and code completion. The SDK now includes a macro to facilitate and encourage use of fixed underlying types — `NS_ENUM()`
-<!--При использовании `enum`ов рекомендуется использовать нововведеный фиксированный спецификатор типа т к он имеет более строгую проверку типов и лучшее автозаполнение кода. Теперь SDK включает в себя макрос, облегчающий и улучшающий для использования фиксированного идентификатора типов - `NS_ENUM()`
--->
-**Хорошо:**
+<!--When using `enum`s, it is recommended to use the new fixed underlying type specification because it has stronger type checking and code completion. The SDK now includes a macro to facilitate and encourage use of fixed underlying types — `NS_ENUM()`-->
 
+При использовании `enum`ов рекомендуется использовать новый спецификатор типа так как он имеет более строгую проверку типов и улучшенное автозаполнение кода. Теперь SDK включает в себя макрос, облегчающий и улучшающий использование фиксированного идентификатора типов - `NS_ENUM()`
+
+**Хорошо:**
 ```objc
 typedef NS_ENUM(NSInteger, NYTAdRequestState) {
     kNYTAdRequestStateInactive,
@@ -346,7 +350,21 @@ typedef NS_ENUM(NSInteger, NYTAdRequestState) {
 };
 ```
 
+**Плохо:**
+```objc
+typedef enum
+{
+    en_BlobUnknown,
+    en_BlobImageRetina,
+    en_BlobImageBgRetina,
+    en_BlobPdf
+}
+enumBlobType;
+```
+
 ## Private свойства
+
+Используйте private-свойства только когда нужно переопределить сеттер или геттер для intance-перменных (во всех остальных случаях используйте intance-перменные).
 
 Объявляйте private-свойства в class extension (анонимных категориях) в файле с реализацией класса (.m). Используйте именованные категории (такие как `NYTPrivate` или `private`) только для расширения других классов.
 
@@ -364,14 +382,18 @@ typedef NS_ENUM(NSInteger, NYTAdRequestState) {
 
 ## Именование графических ресурсов
 
-Image names should be named consistently to preserve organization and developer sanity. They should be named as one camel case string with a description of their purpose, followed by the un-prefixed name of the class or property they are customizing (if there is one), followed by a further description of color and/or placement, and finally their state.
+<!--Image names should be named consistently to preserve organization and developer sanity. They should be named as one camel case string with a description of their purpose, followed by the un-prefixed name of the class or property they are customizing (if there is one), followed by a further description of color and/or placement, and finally their state.//-->
+
+Изображения должны быть названы в [ВерблюжьемРегистре](http://ru.wikipedia.org/wiki/CamelCase) с описанием их назначения, содержать имя класса или свойства, для которого они предназначены (если такое имеется), далее идет цвет или расположение, и в конце состояние элемента, для которого предназначено изображение.
 
 **Хорошо**
 
 * `RefreshBarButtonItem` / `RefreshBarButtonItem@2x` and `RefreshBarButtonItemSelected` / `RefreshBarButtonItemSelected@2x`
 * `ArticleNavigationBarWhite` / `ArticleNavigationBarWhite@2x` and `ArticleNavigationBarBlackSelected` / `ArticleNavigationBarBlackSelected@2x`.
 
-Images that are used for a similar purpose should be grouped in respective groups in an Images folder.
+<!--Images that are used for a similar purpose should be grouped in respective groups in an Images folder.//-->
+
+Изображения, используемые для оинаковых целей должны быть сгруппированы в папки.
 
 ## Логические типы
 
