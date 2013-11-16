@@ -423,16 +423,36 @@ if (isAwesome == YES) // Never do this.
 
 Для реализации синглтонов используйте потокобезопасный шаблон
 ```objc
-+ (instancetype)sharedInstance {
-   static id sharedInstance = nil;
+#import <Foundation/Foundation.h>
 
-   static dispatch_once_t onceToken;
-   dispatch_once(&onceToken, ^{
-      sharedInstance = [[self alloc] init];
-   });
+@interface MySingleton : NSObject
 
-   return sharedInstance;
++(instancetype) sharedInstance;
+
++(instancetype) alloc __attribute__((unavailable("alloc not available, call sharedInstance instead")));
+-(instancetype) init __attribute__((unavailable("init not available, call sharedInstance instead")));
++(instancetype) new __attribute__((unavailable("new not available, call sharedInstance instead")));
+
+@end
+
+#import "MySingleton.h"
+
+@implementation MySingleton
+
++(instancetype) sharedInstance {
+    static dispatch_once_t pred;
+    static id shared = nil;
+    dispatch_once(&pred, ^{
+        shared = [[super alloc] initUniqueInstance];
+    });
+    return shared;
 }
+
+-(instancetype) initUniqueInstance {
+    return [super init];
+}
+
+@end
 ```
 Использование шаблона предотвратит [возможные многочисленные ошибки](http://cocoasamurai.blogspot.com/2011/04/singletons-your-doing-them-wrong.html).
  
