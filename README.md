@@ -172,12 +172,17 @@ if (error) {
 
 Свойства можно использовать только для public-переменных, доступ к которым нужно предоставить снаружи класса. Исключения составляют свойства, для которых необходимо переопределить сеттер и/или геттер. Их нужно хранить в `.m` файле, в безымянной private-категории.
 
+Для простых типов по максимуму используйте специальные типы такие как `NSInteger`, `NSUInteger`, `CGFloat` вместо `int`, `float` и т.д.. Это в дальнейшем облегчит переход на 64-битную платформу, которую активно начала продвигать Apple.
+
+[Apple 64-Bit Transition Guide for Cocoa Touch] (https://developer.apple.com/library/ios/documentation/General/Conceptual/CocoaTouch64BitGuide/Major64-BitChanges/Major64-BitChanges.html#//apple_ref/doc/uid/TP40013501-CH2-SW8)
+
 **Хорошо:**
 
 ```objc
 @interface AFKSection : NSObject {
  @private
     NSString *_headline;
+    NSUInteger _count;
 }
 
 @property (strong, nonatomic) NSString *publicHeadline;
@@ -189,6 +194,7 @@ if (error) {
 
 @property (strong, nonatomic) NSString *publicHeadline;
 @property (strong, nonatomic) NSString *headline;
+@property (nonatomic) int count; 
 
 @end
 ```
@@ -198,7 +204,7 @@ if (error) {
 Для задания IBOutlet'ов используйте instance-переменные.
 Делайте IBOutlet'ы доступными извне (public) только в случае крайней необходимости.
 
-Все IBOutlet'ы нужно делать "слабыми" (`weak`), так на них уже ссылается родитель. 
+Все IBOutlet'ы нужно делать "слабыми" (`weak`), так как они находятся внутри иерархии, и на них уже ссылается их родитель. 
 
 `strong` допускается только для свойств объектов, на которые никто не ссылается (например, вью контроллеры, или другие объекты в xib'ах, находящиеся вверху их иерархии).
 
