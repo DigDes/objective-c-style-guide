@@ -37,6 +37,7 @@
 * [Именование графических ресурсов](#Именование-графических-ресурсов)
 * [Логический тип BOOL](#booleans)
 * [Синглтоны](#Синглтоны)
+* [Предпочтительная структура .h / .m файлов] (#Предпочтительная-структура-файлов)
 * [Xcode проект](#xcode-project)
 
 ## Использование точек
@@ -534,7 +535,82 @@ if (isAwesome == YES) // Never do this.
 @end
 ```
 Использование шаблона предотвратит [возможные многочисленные ошибки](http://cocoasamurai.blogspot.com/2011/04/singletons-your-doing-them-wrong.html).
- 
+
+## Предпочтительная структура файлов
+Порядок объявления переменных:
+
+* IBOutlets (strong, потом weak)
+* Объекты внутренних классов
+* Объекты UIKit (UIImage, UINib))
+* Объекты Foundation (NSString, NSArray)
+* Простые типы данных (NSInteger, BOOL)
+
+### .h -
+
+* Переменные
+* Свойства
+* IBActions
+* Публичные методы
+
+### .m
+
+* dealloc
+* init-методы
+* Сеттеры / геттеры
+* Методы жизненного цикла Вью Контроллера в порядке их вызова (viewDidLoad, viewWillAppear)
+* Методы делегатов и другие переопределенные методы
+* Остальные методы
+
+**Хорошо:**
+
+```objc
+#import "iCarousel.h"
+#import "NotificationsManager.h"
+
+@class DMWidgetViewController;
+@class DMShadowView;
+
+@interface DMCarouselViewController : DMViewController  {
+ @private
+    IBOutlet DMWidgetViewController *_widgetViewController;
+	
+	UIImage *_image;
+	
+	NSDate *date;
+	
+	CGFloat _spacing;
+
+	double _arc;
+}
+
+@property (nonatomic) CGFloat shadowTopLine;
+
+- (IBAction)changeCarouselType:(id)sender;
+
+- (void)createCarousel;
+@end
+
+@implementation DMCarouselViewController
+
+- (void)dealloc {
+	...
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    ...
+}
+
+#pragma mark - View Controller lifecycle
+...
+#pragma mark - UITableViewDelegate
+...
+
+@end
+```
+
+
+
 
 ## Xcode-проект
 
