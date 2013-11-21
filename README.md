@@ -2,13 +2,6 @@
 
 Это руководство по стилю кода, основанное на руководстве для разработчиков в The New York Times(https://github.com/NYTimes/objective-c-style-guide/contributors)
 
-> *TODO:*
-> 
-> * weak/strong IBOutlets
-> * предпочтительная структура .h / .m файлов
-> * использование USInteger, CGFloat вместо int, float и т.д.
-> * ???
-
 #ВАЖНО!
 **Если вы работаете с проектом, или классом, который не соответствует данному стилю, постарайтесь максимально привести его в соответствие этому самому стилю.**
 
@@ -31,6 +24,7 @@
 * [Обработка ошибок](#Обработка-ошибок)
 * [Методы](#Методы)
 * [Переменные](#Переменные)
+* [IBOutlets](#iboutlets)
 * [Правила именования](#Правила-именования)
   * [Подчеркивания](#Подчеркивания)
 * [Комментарии](#Комментарии)
@@ -196,6 +190,48 @@ if (error) {
 @property (strong, nonatomic) NSString *headline;
 
 @end
+```
+
+##IBOutlets
+
+Для задания IBOutlet'ов используйте instance-переменные.
+Делайте IBOutlet'ы доступными извне (public) только в случае крайней необходимости.
+
+Все IBOutlet'ы нужно делать "слабыми" (`weak`), так на них уже ссылается родитель. 
+
+`strong` допускается только для свойств объектов, на которые никто не ссылается (например, вью контроллеры, или другие объекты в xib'ах, находящиеся вверху их иерархии).
+
+**Хорошо:**
+
+```objc
+@interface DMWidgetViewController : DMViewController {
+ @private
+    IBOutlet DMObjectPassportViewController *_objectPassportViewController;
+    IBOutlet DMNavigationMenuWidgetSelectViewController *_topMenuViewController;
+    IBOutlet DMSideMenuViewController *_sideMenuViewController;
+    
+    __weak IBOutlet UIView *_containerView;
+    __weak IBOutlet UIView *_topBarContainerView;
+    __weak IBOutlet UIImageView *_contentBackgroundImageView;
+}
+```
+
+**Плохо:**
+
+```objc
+@interface DMSideMenuCell : UITableViewCell
+@property (nonatomic, strong) IBOutlet UIImageView* cellBg;
+@property (nonatomic, strong) IBOutlet UILabel* titleLbl;
+@end
+```
+или
+```objc
+@interface DMCarouselViewController : DMViewController {
+ @private
+    IBOutlet UIButton *changeTypeButton;
+	IBOutlet UILabel *dateLabel;
+	IBOutlet UIButton *refreshButton;
+}
 ```
 
 
