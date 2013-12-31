@@ -404,6 +404,8 @@ NS_ENUM(NSInteger, AFKClassNameTableSize) {
  #define thumbnailHeight 2
 ```
 
+[Хорошая статья об альтернативах командам препроцессора](http://qualitycoding.org/preprocessor/)
+
 ## Тип перечисление
 
 <!--When using `enum`s, it is recommended to use the new fixed underlying type specification because it has stronger type checking and code completion. The SDK now includes a macro to facilitate and encourage use of fixed underlying types — `NS_ENUM()`-->
