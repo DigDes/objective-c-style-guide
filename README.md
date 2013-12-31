@@ -530,16 +530,17 @@ if (isAwesome == YES) // Never do this.
 @implementation MySingleton
 
 +(instancetype) sharedInstance {
-    static dispatch_once_t pred;
     static id shared = nil;
-    dispatch_once(&pred, ^{
-        shared = [[super alloc] initUniqueInstance];
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        shared = [(MySingleton *)[super alloc] initUniqueInstance];
     });
     return shared;
 }
 
 -(instancetype) initUniqueInstance {
-    return [super init];
+    return (MySingleton *)[super init];
 }
 
 @end
