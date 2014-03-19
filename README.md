@@ -580,10 +580,13 @@ if (isAwesome == YES) // Never do this.
 **Хорошо:**
 
 ```objc
-#pragma mark - Lifecycle
+
+- (void)dealloc {}
 
 - (instancetype)init {}
-- (void)dealloc {}
+
+#pragma mark - Lifecycle
+
 - (void)viewDidLoad {}
 - (void)viewWillAppear:(BOOL)animated {}
 - (void)didReceiveMemoryWarning {}
