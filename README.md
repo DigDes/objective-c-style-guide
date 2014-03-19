@@ -580,53 +580,44 @@ if (isAwesome == YES) // Never do this.
 **Хорошо:**
 
 ```objc
-#import "iCarousel.h"
-#import "NotificationsManager.h"
+#pragma mark - Lifecycle
 
-@class DMWidgetViewController;
-@class DMShadowView;
+- (instancetype)init {}
+- (void)dealloc {}
+- (void)viewDidLoad {}
+- (void)viewWillAppear:(BOOL)animated {}
+- (void)didReceiveMemoryWarning {}
 
-@interface DMCarouselViewController : DMViewController  {
- @private
-    IBOutlet DMWidgetViewController *_widgetViewController;
-	
-	UIImage *_image;
-	
-	NSDate *date;
-	
-	CGFloat _spacing;
+#pragma mark - Custom Accessors
 
-	double _arc;
-}
+- (void)setCustomProperty:(id)value {}
+- (id)customProperty {}
 
-@property (nonatomic) CGFloat shadowTopLine;
+#pragma mark - IBActions
 
-- (IBAction)changeCarouselType:(id)sender;
+- (IBAction)submitData:(id)sender {}
 
-- (void)createCarousel;
-@end
-
-@implementation DMCarouselViewController
-
-- (void)dealloc {
-	...
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    ...
-}
-
-#pragma mark - View Controller lifecycle
-...
+#pragma mark - Protocol conformance
+#pragma mark - UITextFieldDelegate
+#pragma mark - UITableViewDataSource
 #pragma mark - UITableViewDelegate
-...
 
-@end
+#pragma mark - NSCopying
+
+- (id)copyWithZone:(NSZone *)zone {}
+
+#pragma mark - NSObject
+
+- (NSString *)description {}
+
+#pragma mark - Public
+
+- (void)publicMethod {}
+
+#pragma mark - Private
+
+- (void)privateMethod {}
 ```
-
-
-
 
 ## Xcode-проект
 
