@@ -569,7 +569,7 @@ if (isAwesome == YES) // Never do this.
 
 * dealloc
 * init-методы
-* Методы жизненного цикла Вью Контроллера в порядке их вызова (viewDidLoad, viewWillAppear)
+* Методы жизненного цикла UIViewController'a в порядке их вызова (viewDidLoad, viewWillAppear)
 * Сеттеры / геттеры
 * IBActions
 * Методы делегатов и другие переопределенные методы
