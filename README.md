@@ -1,4 +1,4 @@
-# DD Objective-C Style Guide
+# Objective-C Style Guide
 
 Это руководство по стилю кода, основанное на руководстве для разработчиков в The New York Times(https://github.com/NYTimes/objective-c-style-guide/contributors)
 
