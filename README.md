@@ -382,19 +382,18 @@ CGFloat height = frame.size.height;
 Избегайте использования "магических чисел"(magic numbers) и строковых литералов. Вместо этого определяйте их как переменные-константы. Это позволяет сделать код намного понятней и облегчает их изменение. 
 Объявляйте константы с модификатором `static` и не объявляйте при помощи `#define`. Используйте `#define` **только** для  макросов.
 Названия локальных констант (enum-ов, локальных переменных-констант, и т.д.) должны начинаться со строчной буквы k.
-Названия глобальных констант должны начинаться с имени класса, в котором определена константа. 
 Для разделения слов используйте [ВерблюжийРегистр](http://ru.wikipedia.org/wiki/CamelCase).
 Для целочисленных (NSInteger) констант используйте `NS_ENUM`.
 
 **Хорошо:**
 
 ```objc
-static NSString * const kAFKAboutViewControllerCompanyName = @"The New York Times Company";
+static NSString * const kCompanyName = @"The New York Times Company";
 
-static const CGFloat kAFKClassNameImageThumbnailHeight = 50.0;
+static const CGFloat kImageThumbnailHeight = 50.0;
 
-NS_ENUM(NSInteger, AFKClassNameTableSize) {
-    kAFKClassNameTableSizeRowsCount = 10
+NS_ENUM(NSInteger, TableSize) {
+    kTableSizeRowsCount = 10
 };
 ```
 
@@ -409,7 +408,7 @@ NS_ENUM(NSInteger, AFKClassNameTableSize) {
 [Хорошая статья об альтернативах командам препроцессора](http://qualitycoding.org/preprocessor/)
 ### Глобальные константы
 
-Глобальные константы должны задаваться в файле реализации, в заголовочном файле должно быть только описание константы с модификатором [UIKIT_EXTERN](http://stackoverflow.com/a/17669269).
+Глобальные константы должны задаваться в файле реализации, в заголовочном файле должно быть только описание константы с модификатором [UIKIT_EXTERN](http://stackoverflow.com/a/17669269). Названия глобальных констант должны начинаться с имени класса, в котором определена константа.
 
 **Хорошо:**
 
