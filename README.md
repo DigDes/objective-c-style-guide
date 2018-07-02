@@ -349,7 +349,7 @@ NSNumber *buildingZIPCode = [NSNumber numberWithInteger:10018];
 
 ## CGRect Functions
 
-Вместо прямого доступа к полям `x`, `y`, `width`, или `height` структуры `CGRect`, всегда используйте [функции `CGGeometry`](http://developer.apple.com/library/ios/#documentation/graphicsimaging/reference/CGGeometry/Reference/reference.html).
+Вместо прямого доступа к полям `x`, `y`, `width`, или `height` структуры `CGRect`, всегда используйте [функции `CGGeometry`](https://developer.apple.com/documentation/coregraphics/cggeometry?language=objc).
 
 Из документации Apple `CGGeometry`:
   
