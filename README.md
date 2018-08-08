@@ -247,7 +247,7 @@ if (error) {
 
 ## Правила именования
 
-По возможности старайтесь соблюдать соглашение Apple о именовании [memory management rules](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html) ([NARC](http://stackoverflow.com/a/2865194/340508)).
+По возможности старайтесь соблюдать [соглашение Apple о именовании](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Conventions/Conventions.html), особенно, если это касается [правил управления памятью](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html).
 
 Используйте подробные имена переменных.
 
