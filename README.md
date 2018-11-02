@@ -642,7 +642,7 @@ if (isAwesome == YES) // Never do this.
 * Методы делегатов и другие переопределенные методы
 * Остальные методы
 
-Логические блоки кода разделяйте `#pragma mark - <Название блока>`
+Логические блоки кода разделяйте `#pragma mark - <Название блока>`, до и после `#pragma mark` добавляйте _две_ пустых строки.
 
 **Хорошо:**
 
@@ -652,39 +652,54 @@ if (isAwesome == YES) // Never do this.
 
 - (instancetype)init {}
 
+
 #pragma mark - Lifecycle
+
 
 - (void)viewDidLoad {}
 - (void)viewWillAppear:(BOOL)animated {}
 - (void)didReceiveMemoryWarning {}
 
+
 #pragma mark - Custom Accessors
+
 
 - (void)setCustomProperty:(id)value {}
 - (id)customProperty {}
 
+
 #pragma mark - IBActions
 
+
 - (IBAction)submitData:(id)sender {}
+
 
 #pragma mark - Protocol conformance
 #pragma mark - UITextFieldDelegate
 #pragma mark - UITableViewDataSource
 #pragma mark - UITableViewDelegate
 
+
 #pragma mark - NSCopying
+
 
 - (id)copyWithZone:(NSZone *)zone {}
 
+
 #pragma mark - NSObject
+
 
 - (NSString *)description {}
 
+
 #pragma mark - Public
+
 
 - (void)publicMethod {}
 
+
 #pragma mark - Private
+
 
 - (void)privateMethod {}
 ```
