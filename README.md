@@ -47,18 +47,18 @@
 
 ## Использование точек
 
-Используйте точки только для доступа к свойствам. Во всех остальных случаях используйте квадратные скобки.
+Используйте точки для доступа к свойствам объектов и классов. Во всех остальных случаях используйте квадратные скобки.
 
 **Хорошо:**
 ```objc
-view.backgroundColor = [UIColor orangeColor];
-[UIApplication sharedApplication].delegate;
+view.backgroundColor = UIColor.orangeColor;
+UIApplication.sharedApplication.delegate;
 ```
 
 **Плохо:**
 ```objc
 [view setBackgroundColor:[UIColor orangeColor]];
-UIApplication.sharedApplication.delegate;
+[view backgroundColor].copy;
 ```
 
 ## Отступы
@@ -167,6 +167,19 @@ if (error) {
 ```objc
 - (void)setExampleText:(NSString *)text image:(UIImage *)image;
 ```
+
+Многострочные методы при вызове нужно выраввнивать по названиям параметров.
+
+**Например**:
+```objc
+[actions addObject:[EWDocumentAction actionWithTitle:_document.assignmentButtonText
+				     titleSelected:nil
+				     image:_document.assignmentButtonImage
+				     imageSelected:nil
+				     backgroundColor:nil
+				     actionType:EWDocumentActionTypeAssignment]];
+```
+
 ## Переменные
 
 Переменные нужно называть максимально информативно. Имена переменных, состоящие из одной буквы, допускаются только для счётчика в цикле `for()`.
@@ -334,7 +347,7 @@ id varnm;
 
 ```objc
 NSArray *names = @[@"Brian", @"Matt", @"Chris", @"Alex", @"Steve", @"Paul"];
-NSDictionary *productManagers = @{@"iPhone" : @"Kate", @"iPad" : @"Kamal", @"Mobile Web" : @"Bill"};
+NSDictionary *productManagers = @{ @"iPhone": @"Kate", @"iPad": @"Kamal", @"Mobile Web": @"Bill" };
 NSNumber *shouldUseLiterals = @YES;
 NSNumber *buildingZIPCode = @10018;
 ```
@@ -431,8 +444,8 @@ NSString *const AFKSearchEngineSearchResultsScopeKey = @"scopeKey";
 **Хорошо:**
 ```objc
 typedef NS_ENUM(NSInteger, NYTAdRequestState) {
-    kNYTAdRequestStateInactive,
-    kNYTAdRequestStateLoading
+    NYTAdRequestStateInactive,
+    NYTAdRequestStateLoading
 };
 ```
 
@@ -507,7 +520,7 @@ if (someObject == nil) {
 
 ```objc
 if (isAwesome)
-if (![someObject boolValue])
+if (!someObject.boolValue)
 ```
 
 **Плохо(для типа `BOOL`):**
@@ -533,6 +546,7 @@ if (isAwesome == YES) // Never do this.
 ```objc
 #import <Foundation/Foundation.h>
 
+
 @interface MySingleton : NSObject
 
 +(instancetype) sharedInstance;
@@ -544,6 +558,7 @@ if (isAwesome == YES) // Never do this.
 @end
 
 #import "MySingleton.h"
+
 
 @implementation MySingleton
 
@@ -573,8 +588,11 @@ if (isAwesome == YES) // Never do this.
 
 Порядок расположения импортов в .m файле:
 * Заголовочный файл текущего класса
+* _Одна_ пустая строка
 * Заголовочные файлы сторонних библиотек и фреймворков в алфавитном порядке
+* _Одна_ пустая строка
 * Заголовочные файлы остальных классов в алфавитном порядке
+* _Две_ пустые строки
 
 **Хорошо:**
 
@@ -629,7 +647,6 @@ if (isAwesome == YES) // Never do this.
 
 * Переменные
 * Свойства
-* IBActions
 * Публичные методы
 
 ### .m
@@ -638,11 +655,11 @@ if (isAwesome == YES) // Never do this.
 * init-методы
 * Методы жизненного цикла UIViewController'a в порядке их вызова (viewDidLoad, viewWillAppear)
 * Сеттеры / геттеры
-* IBActions
+* Actions
 * Методы делегатов и другие переопределенные методы
 * Остальные методы
 
-Логические блоки кода разделяйте `#pragma mark - <Название блока>`, до и после `#pragma mark` добавляйте _две_ пустых строки.
+Логические блоки кода разделяйте `// MARK: - <Название блока>`, до и после `// MARK:` добавляйте _две_ пустых строки.
 
 **Хорошо:**
 
@@ -653,7 +670,7 @@ if (isAwesome == YES) // Never do this.
 - (instancetype)init {}
 
 
-#pragma mark - Lifecycle
+// MARK: - Lifecycle
 
 
 - (void)viewDidLoad {}
@@ -661,44 +678,44 @@ if (isAwesome == YES) // Never do this.
 - (void)didReceiveMemoryWarning {}
 
 
-#pragma mark - Custom Accessors
+// MARK: - Custom Accessors
 
 
 - (void)setCustomProperty:(id)value {}
 - (id)customProperty {}
 
 
-#pragma mark - IBActions
+// MARK: - Actions
 
 
 - (IBAction)submitData:(id)sender {}
 
 
-#pragma mark - Protocol conformance
-#pragma mark - UITextFieldDelegate
-#pragma mark - UITableViewDataSource
-#pragma mark - UITableViewDelegate
+// MARK: - Protocol Conformance
+// MARK: UITextFieldDelegate
+// MARK: UITableViewDataSource
+// MARK: UITableViewDelegate
 
 
-#pragma mark - NSCopying
+// MARK: - NSCopying
 
 
 - (id)copyWithZone:(NSZone *)zone {}
 
 
-#pragma mark - NSObject
+// MARK: - NSObject
 
 
 - (NSString *)description {}
 
 
-#pragma mark - Public
+// MARK: - Public
 
 
 - (void)publicMethod {}
 
 
-#pragma mark - Private
+// MARK: - Private
 
 
 - (void)privateMethod {}
