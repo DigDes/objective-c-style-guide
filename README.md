@@ -63,7 +63,7 @@ UIApplication.sharedApplication.delegate;
 
 ## Отступы
 
-* Для отсупов используйте табы длиной в 4 пробела (проверьте, что ваш проект настроен на использование табов).
+* Для отсупов используйте 4 пробела (проверьте, что ваш проект настроен на использование пробелов).
 * Фигурные скобки в методах и других конструкциях (например `if`/`else`/`switch`/`while`) всегда всегда должны открываться в той же строке, что и условие. Но закрываться должны на другой строке.
 * Не оставляйте пустых блоков с фигурными скобками. Исключение составляют методы, которые обязательны для имплементации, но их нужно оставить пустыми в конкретном случае.
 
@@ -71,8 +71,7 @@ UIApplication.sharedApplication.delegate;
 ```objc
 if (user.isHappy) {
 //Do something
-}
-else {
+} else {
 //Do something else
 }
 ```
@@ -253,8 +252,8 @@ if (error) {
 @interface DMCarouselViewController : DMViewController {
  @private
     IBOutlet UIButton *changeTypeButton;
-	IBOutlet UILabel *dateLabel;
-	IBOutlet UIButton *refreshButton;
+    IBOutlet UILabel *dateLabel;
+    IBOutlet UIButton *refreshButton;
 }
 ```
 
